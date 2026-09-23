@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>College Timetable</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+
+            background:
+                radial-gradient(circle at top left, #dbeafe, transparent 35%),
+                radial-gradient(circle at bottom right, #fce7f3, transparent 35%),
+                linear-gradient(135deg, #eef2ff, #f8fafc);
+
+            color: #1e1b4b;
+        }
+
+        /* Navigation */
+        .site-nav {
+            background: linear-gradient(
+                90deg,
+                #1e1b4b,
+                #312e81,
+                #4c1d95
+            );
+
+            padding: 16px 0;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-inner a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+
+            padding: 10px 18px;
+            border-radius: 20px;
+
+            transition: 0.3s ease;
+        }
+
+        .nav-inner a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Main */
+        main {
+            padding: 50px 0;
+        }
+
+        /* Program Heading */
+        .program-head {
+            text-align: center;
+            margin-bottom: 35px;
+
+            animation: fadeDown 1s ease;
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding: 8px 18px;
+            margin-bottom: 15px;
+
+            border-radius: 25px;
+
+            background: linear-gradient(
+                90deg,
+                #6366f1,
+                #a855f7
+            );
+
+            color: white;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            box-shadow:
+                0 5px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .program-head h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+
+            background: linear-gradient(
+                90deg,
+                #4f46e5,
+                #9333ea,
+                #db2777
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .muted {
+            color: #64748b;
+            font-size: 16px;
+        }
+
+        /* Demo Card */
+        .demo {
+            background: rgba(255, 255, 255, 0.92);
+
+            padding: 35px;
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 15px 40px rgba(30, 27, 75, 0.15);
+
+            animation: fadeUp 1s ease;
+
+            overflow-x: auto;
+        }
+
+        .demo:hover {
+            box-shadow:
+                0 20px 45px rgba(79, 70, 229, 0.2);
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+
+            border-collapse: separate;
+            border-spacing: 0;
+
+            overflow: hidden;
+
+            border-radius: 15px;
+
+            background: white;
+
+            box-shadow:
+                0 8px 25px rgba(30, 27, 75, 0.1);
+        }
+
+        /* Caption */
+        caption {
+            caption-side: top;
+
+            padding: 18px;
+
+            font-size: 25px;
+
+            color: #312e81;
+
+            font-weight: bold;
+        }
+
+        /* Table Header */
+        th {
+            background: linear-gradient(
+                90deg,
+                #4f46e5,
+                #7c3aed
+            );
+
+            color: white;
+
+            padding: 18px;
+
+            font-size: 16px;
+
+            text-align: center;
+        }
+
+        /* Table Data */
+        td {
+            padding: 18px;
+
+            text-align: center;
+
+            color: #334155;
+
+            border-bottom: 1px solid #e2e8f0;
+
+            font-size: 16px;
+
+            transition: 0.3s ease;
+        }
+
+        /* Alternate Rows */
+        tr:nth-child(even) td {
+            background: #f8fafc;
+        }
+
+        /* Hover */
+        tbody tr:hover td,
+        table tr:hover td {
+            background: #ede9fe;
+
+            color: #4f46e5;
+
+            font-weight: bold;
+        }
+
+        /* Day Column */
+        td:first-child {
+            font-weight: bold;
+
+            color: #4f46e5;
+        }
+
+        /* Last Row */
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Footer */
+        body > footer {
+            background: linear-gradient(
+                90deg,
+                #1e1b4b,
+                #312e81,
+                #4c1d95
+            );
+
+            color: white;
+
+            text-align: center;
+
+            padding: 20px;
+
+            margin-top: 30px;
+        }
+
+        /* Animations */
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+
+            .nav-inner {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .program-head h1 {
+                font-size: 30px;
+            }
+
+            .demo {
+                padding: 20px;
+            }
+
+            table {
+                min-width: 650px;
+            }
+
+            th,
+            td {
+                padding: 14px;
+            }
+
+            main {
+                padding: 30px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+
+        <div class="container nav-inner">
+
+            <a href="../index.html">Home</a>
+
+            <a href="index.html">Back to Programs</a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Main Content -->
+    <main class="container">
+
+        <div class="program-head">
+
+            <span class="badge">HTML 10</span>
+
+            <h1>College Timetable</h1>
+
+            <p class="muted">
+                HTML practical experiment demonstrating a college timetable.
+            </p>
+
+        </div>
+
+
+        <!-- Timetable -->
+        <div class="demo">
+
+            <table>
+
+                <caption>
+                    College Timetable
+                </caption>
+
+                <tr>
+                    <th>Day</th>
+                    <th>9–10</th>
+                    <th>10–11</th>
+                    <th>11–12</th>
+                </tr>
+
+                <tr>
+                    <td>Monday</td>
+                    <td>HTML</td>
+                    <td>CSS</td>
+                    <td>Maths</td>
+                </tr>
+
+                <tr>
+                    <td>Tuesday</td>
+                    <td>JS</td>
+                    <td>DBMS</td>
+                    <td>English</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+        HTML • CSS • JavaScript Practical Programs
+    </footer>
+
+</body>
+
+</html>

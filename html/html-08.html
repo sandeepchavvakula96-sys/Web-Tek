@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HTML5 Semantic Elements</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+
+            background:
+                radial-gradient(circle at top left, #dbeafe, transparent 35%),
+                radial-gradient(circle at bottom right, #fce7f3, transparent 35%),
+                linear-gradient(135deg, #eef2ff, #f8fafc);
+
+            color: #1e1b4b;
+        }
+
+        /* Navigation */
+        .site-nav {
+            background: linear-gradient(
+                90deg,
+                #1e1b4b,
+                #312e81,
+                #4c1d95
+            );
+
+            padding: 16px 0;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-inner a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+
+            padding: 10px 18px;
+            border-radius: 20px;
+
+            transition: 0.3s ease;
+        }
+
+        .nav-inner a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Main */
+        main {
+            padding: 50px 0;
+        }
+
+        /* Program Heading */
+        .program-head {
+            text-align: center;
+            margin-bottom: 35px;
+
+            animation: fadeDown 1s ease;
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding: 8px 18px;
+            margin-bottom: 15px;
+
+            border-radius: 25px;
+
+            background: linear-gradient(
+                90deg,
+                #6366f1,
+                #a855f7
+            );
+
+            color: white;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .program-head h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+
+            background: linear-gradient(
+                90deg,
+                #4f46e5,
+                #9333ea,
+                #db2777
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .muted {
+            color: #64748b;
+            font-size: 16px;
+        }
+
+        /* Demo Card */
+        .demo {
+            background: rgba(255, 255, 255, 0.92);
+
+            padding: 30px;
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 15px 40px rgba(30, 27, 75, 0.15);
+
+            animation: fadeUp 1s ease;
+
+            transition: 0.3s ease;
+        }
+
+        .demo:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 20px 45px rgba(79, 70, 229, 0.2);
+        }
+
+        /* Semantic Header */
+        .demo header {
+            background: linear-gradient(
+                90deg,
+                #4f46e5,
+                #6366f1
+            );
+
+            color: white;
+
+            padding: 25px;
+
+            text-align: center;
+
+            border-radius: 18px 18px 0 0;
+
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.2);
+        }
+
+        .demo header h2 {
+            font-size: 28px;
+        }
+
+        /* Navigation inside demo */
+        .demo > nav {
+            background: #312e81;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 15px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+        /* Section */
+        .demo section {
+            padding: 30px;
+
+            background: #f8fafc;
+
+            border-left: 4px solid #8b5cf6;
+            border-right: 4px solid #8b5cf6;
+        }
+
+        /* Article */
+        .demo article {
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 8px 25px rgba(30, 27, 75, 0.1);
+
+            transition: 0.3s ease;
+        }
+
+        .demo article:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 12px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .demo article h3 {
+            color: #4f46e5;
+
+            font-size: 24px;
+
+            margin-bottom: 10px;
+        }
+
+        .demo article p {
+            color: #475569;
+
+            line-height: 1.7;
+
+            font-size: 16px;
+        }
+
+        /* Footer inside Demo */
+        .demo > footer {
+            background: linear-gradient(
+                90deg,
+                #9333ea,
+                #db2777
+            );
+
+            color: white;
+
+            padding: 18px;
+
+            text-align: center;
+
+            border-radius: 0 0 18px 18px;
+
+            font-weight: bold;
+        }
+
+        /* Main Footer */
+        body > footer {
+            background: linear-gradient(
+                90deg,
+                #1e1b4b,
+                #312e81,
+                #4c1d95
+            );
+
+            color: white;
+
+            text-align: center;
+
+            padding: 20px;
+
+            margin-top: 30px;
+        }
+
+        /* Animations */
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+
+            .nav-inner {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .program-head h1 {
+                font-size: 30px;
+            }
+
+            .demo {
+                padding: 20px;
+            }
+
+            .demo section {
+                padding: 20px;
+            }
+
+            .demo header h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+
+        <div class="container nav-inner">
+
+            <a href="../index.html">Home</a>
+
+            <a href="index.html">Back to Programs</a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Main Content -->
+    <main class="container">
+
+        <div class="program-head">
+
+            <span class="badge">HTML 08</span>
+
+            <h1>HTML5 Semantic Elements</h1>
+
+            <p class="muted">
+                HTML practical experiment demonstrating semantic elements.
+            </p>
+
+        </div>
+
+
+        <!-- Semantic Elements Demo -->
+        <div class="demo">
+
+            <!-- Header -->
+            <header>
+                <h2>Header</h2>
+            </header>
+
+
+            <!-- Navigation -->
+            <nav>
+                Navigation
+            </nav>
+
+
+            <!-- Section -->
+            <section>
+
+                <!-- Article -->
+                <article>
+
+                    <h3>Article</h3>
+
+                    <p>
+                        Semantic content goes here. HTML5 semantic elements
+                        clearly describe the meaning and structure of
+                        webpage content.
+                    </p>
+
+                </article>
+
+            </section>
+
+
+            <!-- Footer inside Demo -->
+            <footer>
+                Footer
+            </footer>
+
+        </div>
+
+    </main>
+
+
+    <!-- Website Footer -->
+    <footer>
+        HTML • CSS • JavaScript Practical Programs
+    </footer>
+
+</body>
+
+</html>
